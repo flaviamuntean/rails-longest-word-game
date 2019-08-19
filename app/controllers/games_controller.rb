@@ -9,11 +9,13 @@ class GamesController < ApplicationController
   end
 
   def score
+    session[:score]
     @word = params[:word]
     @letters = params[:letters]
     url = "https://wagon-dictionary.herokuapp.com/#{@word}"
     serialized_response = open(url).read
     @result = JSON.parse(serialized_response)
     @attempt_arr = @word.upcase.split(//)
+    # raise
   end
 end
